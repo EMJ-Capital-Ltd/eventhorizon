@@ -3,7 +3,7 @@ import path from 'path';
 import Papa from 'papaparse';
 import type { EventDefinition, SignalPoint, StressResult } from './types';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
+const DATA_DIR = path.join(process.cwd(), 'src/data');
 
 export async function getEvents(): Promise<EventDefinition[]> {
   const filePath = path.join(DATA_DIR, 'events.json');
