@@ -1,0 +1,332 @@
+[
+  {
+    "slug": "sp500-tail-risk-regime",
+    "title": "S&P 500 Tail Risk Regime (>2\u03c3 Move)",
+    "category": "macro",
+    "windowStart": "2026-01-01",
+    "windowEnd": "2026-12-31",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Probability of S&P 500 >5% drawdown in <5 days.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "CBOE VIX / S&P Global",
+        "url": "https://www.cboe.com/"
+      }
+    ]
+  },
+  {
+    "slug": "btc-miner-capitulation-window",
+    "title": "BTC Miner Capitulation Window",
+    "category": "macro",
+    "windowStart": "2026-01-01",
+    "windowEnd": "2026-04-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Miner stress leading to inventory flush.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Hashrate / on-chain metrics providers",
+        "url": "https://www.blockchain.com/explorer"
+      }
+    ]
+  },
+  {
+    "slug": "fed-cut-next-fomc",
+    "title": "Fed Rate Cut (Next FOMC)",
+    "category": "macro",
+    "windowStart": "2026-01-28",
+    "windowEnd": "2026-01-29",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Market probability of a rate cut.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "FOMC calendar",
+        "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+      }
+    ]
+  },
+  {
+    "slug": "euro-area-energy-shock",
+    "title": "Euro Area Energy Shock",
+    "category": "macro",
+    "windowStart": "2025-12-01",
+    "windowEnd": "2026-03-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Winter energy supply crisis probability.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Energy market indicators",
+        "url": "https://www.iea.org/"
+      }
+    ]
+  },
+  {
+    "slug": "us-unemployment-uptrend",
+    "title": "US Unemployment Uptrend",
+    "category": "macro",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2026-06-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Consensus on labor market weakening.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "BLS unemployment data",
+        "url": "https://www.bls.gov/"
+      }
+    ]
+  },
+  {
+    "slug": "us-stablecoin-bill",
+    "title": "US Stablecoin Bill Passage",
+    "category": "regulatory",
+    "windowStart": "2026-02-01",
+    "windowEnd": "2026-06-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Legislation passage probability.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Congress schedule / policy trackers",
+        "url": "https://www.congress.gov/"
+      }
+    ]
+  },
+  {
+    "slug": "xrp-etf-approval",
+    "title": "XRP ETF Approval",
+    "category": "regulatory",
+    "windowStart": "2026-01-15",
+    "windowEnd": "2026-05-15",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "ETF Approval odds.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Public filings / regulator calendar",
+        "url": "https://www.sec.gov/"
+      }
+    ]
+  },
+  {
+    "slug": "eth-etf-staking-approval",
+    "title": "ETH ETF Staking Amendment",
+    "category": "regulatory",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2026-02-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Staking feature addition to ETH ETFs.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "SEC / issuer communications",
+        "url": "https://www.sec.gov/"
+      }
+    ]
+  },
+  {
+    "slug": "major-bridge-exploit",
+    "title": "Major Bridge Exploit (>100M)",
+    "category": "protocol",
+    "windowStart": "2025-10-01",
+    "windowEnd": "2026-10-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Probability of a massive hack.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Security incident feeds",
+        "url": "https://rekt.news/"
+      }
+    ]
+  },
+  {
+    "slug": "stablecoin-net-issuance-surge",
+    "title": "Stablecoin Net Issuance Surge",
+    "category": "liquidity",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2026-01-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Probability of net expansion >$5B/mo.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Issuer transparency reports",
+        "url": "https://www.circle.com/en/transparency"
+      }
+    ]
+  },
+  {
+    "slug": "rwa-tokenized-t-bills-5b",
+    "title": "RWA T-Bills > $5B",
+    "category": "liquidity",
+    "windowStart": "2025-12-01",
+    "windowEnd": "2026-06-01",
+    "outcomes": [
+      {
+        "key": "yes",
+        "label": "Event Occurs"
+      },
+      {
+        "key": "no",
+        "label": "No Event"
+      }
+    ],
+    "notes": "Market cap milestone probability.",
+    "contributors": [
+      {
+        "name": "EMJX Seed",
+        "handle": "@emjx"
+      }
+    ],
+    "sources": [
+      {
+        "label": "RWA dashboards / issuer reports",
+        "url": "https://rwa.xyz/"
+      }
+    ]
+  }
+]
