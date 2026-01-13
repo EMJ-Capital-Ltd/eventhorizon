@@ -6,11 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "dev:uat": "cp .env.uat .env.local && next dev",
+    "build:uat": "cp .env.uat .env.local && next build",
+    "start:uat": "cp .env.uat .env.local && next start",
     "lint": "eslint",
     "test": "vitest",
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^4.14.0",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
