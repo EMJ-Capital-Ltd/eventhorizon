@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, TriangleAlert } from 'lucide-react';
-import { getEvent, getEvents, loadSignal, computeStress, calculateVelocity, detectFragility } from '@/lib/data';
+import { getEvent, getEvents, loadSignal, computeStress, calculateVelocity, detectFragility, calculateAcceleration, calculateJerk, detectBeliefFlip } from '@/lib/data';
 import { ChartSectionWrapper } from '@/components/charts/chart-section-wrapper';
 import { RawDataInspector } from '@/components/charts/raw-data-inspector';
 import { StressBadge } from '@/components/events/stress-badge';
@@ -54,6 +54,11 @@ export default async function EventPage({ params }: EventPageProps) {
   const velocity = calculateVelocity(signal);
   const isFragile = detectFragility(signal);
 
+  // Calculate 2nd and 3rd derivatives for flip detection
+  const acceleration = calculateAcceleration(signal);
+  const jerk = calculateJerk(signal);
+  const beliefFlip = detectBeliefFlip(signal);
+
   // Calculate dispersion
   const dispersion = (latestPoint?.high !== undefined && latestPoint?.low !== undefined)
     ? (latestPoint.high - latestPoint.low)
@@ -90,14 +95,14 @@ export default async function EventPage({ params }: EventPageProps) {
             <p className="text-zinc-400 mb-4">{event.notes}</p>
           )}
 
-          {/* 4-Metric Header Readout */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
+          {/* 6-Metric Header Readout */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-zinc-900/50 border border-zinc-800 rounded-lg p-4">
             {/* PRIMARY */}
             <div className="space-y-1">
               <div className="text-xs text-zinc-500 uppercase tracking-wider font-mono">
                 PRIMARY
               </div>
-              <div className="text-zinc-100 font-medium">
+              <div className="text-zinc-100 font-medium text-sm">
                 {primaryOutcome.label}
               </div>
             </div>
@@ -122,10 +127,10 @@ export default async function EventPage({ params }: EventPageProps) {
               </div>
             </div>
 
-            {/* VELOCITY */}
+            {/* VELOCITY (1st derivative) */}
             <div className="space-y-1">
               <div className="text-xs text-zinc-500 uppercase tracking-wider font-mono">
-                VELOCITY
+                VELOCITY (δ¹)
               </div>
               <div className={`font-mono text-lg ${
                 velocity > 0
@@ -139,8 +144,73 @@ export default async function EventPage({ params }: EventPageProps) {
                   : '0.00pp/d'}
               </div>
             </div>
+
+            {/* ACCELERATION (2nd derivative) */}
+            <div className="space-y-1">
+              <div className="text-xs text-zinc-500 uppercase tracking-wider font-mono">
+                ACCEL (δ²)
+              </div>
+              <div className={`font-mono text-lg ${
+                acceleration > 0.001
+                  ? 'text-cyan-500'
+                  : acceleration < -0.001
+                    ? 'text-orange-500'
+                    : 'text-zinc-500'
+              }`}>
+                {Math.abs(acceleration) > 0.0001
+                  ? `${acceleration > 0 ? '+' : ''}${(acceleration * 100).toFixed(3)}pp/d²`
+                  : '0.000pp/d²'}
+              </div>
+            </div>
+
+            {/* JERK (3rd derivative) */}
+            <div className="space-y-1">
+              <div className="text-xs text-zinc-500 uppercase tracking-wider font-mono">
+                JERK (δ³)
+              </div>
+              <div className={`font-mono text-lg ${
+                jerk > 0.0005
+                  ? 'text-pink-500'
+                  : jerk < -0.0005
+                    ? 'text-amber-500'
+                    : 'text-zinc-500'
+              }`}>
+                {Math.abs(jerk) > 0.00001
+                  ? `${jerk > 0 ? '+' : ''}${(jerk * 100).toFixed(4)}pp/d³`
+                  : '0.0000pp/d³'}
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Belief Flip Warning */}
+        {beliefFlip.hasFlip && (
+          <div
+            className={`flex items-center gap-3 ${
+              beliefFlip.flipType === 'bullish'
+                ? 'bg-cyan-950/20 border-cyan-900/50'
+                : 'bg-orange-950/20 border-orange-900/50'
+            } border rounded-lg px-4 py-3`}
+            title="Inflection point detected - market momentum is shifting direction."
+          >
+            <TriangleAlert className={`h-5 w-5 ${
+              beliefFlip.flipType === 'bullish' ? 'text-cyan-500' : 'text-orange-500'
+            } flex-shrink-0`} />
+            <div>
+              <div className={`font-mono text-sm uppercase tracking-wider ${
+                beliefFlip.flipType === 'bullish' ? 'text-cyan-500' : 'text-orange-500'
+              }`}>
+                🔄 {beliefFlip.flipType.toUpperCase()} FLIP DETECTED
+              </div>
+              <div className={`text-xs mt-1 ${
+                beliefFlip.flipType === 'bullish' ? 'text-cyan-400/80' : 'text-orange-400/80'
+              }`}>
+                Inflection point detected - market momentum is {beliefFlip.flipType === 'bullish' ? 'accelerating upward' : 'reversing downward'}.
+                Strength: {(beliefFlip.strength * 100).toFixed(3)}pp/d²
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Fragility Warning Flag */}
         {isFragile && (
